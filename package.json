@@ -1,0 +1,23 @@
+{
+  "name": "service-grafana",
+  "version": "1.0.0",
+  "description": "Service to populate MySQL for Grafana Dashboards",
+  "main": "server.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Caio Majdalani",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "compression": "1.7.4",
+    "consign": "0.1.6",
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "express-swagger-generator": "1.1.17",
+    "helmet": "3.21.2",
+    "mysql2": "2.1.0",
+    "sequelize": "5.21.3",
+    "winston": "3.2.1"
+  }
+}
