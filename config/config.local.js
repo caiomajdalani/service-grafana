@@ -1,13 +1,15 @@
 const logger = require('../services/utils/logger')
+const { MYSQL } = process.env
+const _mysql = MYSQL ? JSON.parse(MYSQL) : null
 
 module.exports = {
-  database: "reports",
-  username: "root",
-  password: "admin",
+  database: _mysql.DATABASE,
+  username: _mysql.USERNAME,
+  password: _mysql.PASSWORD,
   params: {
-    host: 'localhost',
+    host: _mysql.HOST,
     dialect: 'mysql',
-    port: 3306,
+    port: _mysql.PORT,
     logging: (sql) => {
       logger.info(`[${new Date()}] ${sql}`);
     },

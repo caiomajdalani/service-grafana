@@ -1,0 +1,41 @@
+{
+    "apps": [
+        {
+            "name": "service-grafana",
+            "script": "./index.js",
+            "instances": "1",
+            "exec_mode": "cluster",
+            "error_file": "./logs/pm2/api_error.log",
+            "out_file": "./logs/pm2/api_out.log",
+            "ignore_watch": [
+                "node_modules",
+                ".DS_Store",
+                ".vscode",
+                "logs",
+                ".git",
+                "coverage"
+            ],
+            "trace": true,
+            "watch": true,
+            "env": {
+                "API": {
+                    "VERSION": "v1",
+                    "PORT": 5000,
+                    "REQUEST": {
+                        "LIMIT": "50mb",
+                        "EXTENDED": true,
+                        "LOG": "local"
+                    }
+                },
+                "MYSQL": {
+                    "DATABASE": "reports",
+                    "USERNAME": "root",
+                    "PASSWORD": "admin",
+                    "HOST": "localhost",
+                    "PORT": 3306
+                },
+                "ENVIRONMENT": "local"
+            }
+        }
+    ]
+}
