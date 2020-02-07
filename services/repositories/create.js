@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = app = (model, obj) => 
-    app.db.models[model].create(obj)
-        .then(data => ({ data: JSON.stringify(data, null, 4) }))
+module.exports = app => (model, obj) => 
+    app.database.mysql.models[model].create(obj)
+        .then(data => ({ data }))
         .catch(error => ({ error }))

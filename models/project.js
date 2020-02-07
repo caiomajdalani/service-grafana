@@ -15,6 +15,14 @@ module.exports = (sequelize, DataType) => {
                 isIn: [['API', 'WEB', 'Mobile']]
             }
         }
+    },
+    {
+        indexes: [
+            {
+                unique: true,
+                fields: ['name', 'platform']
+            }
+        ]
     });
     return Project;
 }

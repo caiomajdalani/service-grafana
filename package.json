@@ -9,6 +9,7 @@
   "author": "Caio Majdalani",
   "license": "ISC",
   "dependencies": {
+    "@hapi/joi": "17.1.0",
     "body-parser": "1.19.0",
     "compression": "1.7.4",
     "consign": "0.1.6",
