@@ -5,14 +5,14 @@ module.exports = (sequelize, DataType) => {
             type: DataType.STRING,
             allowNull: false,
             validate: {
-                isIn: [['PedeFacil', 'Portal', 'Ecommerce', 'Allowance', 'SodexoMobile', 'PartnersBridge', 'BUS', 'Gateway']]
+                isIn: [['PedeFacil', 'Portal', 'Ecommerce', 'Allowance', 'SodexoMobile', 'PartnersBridge', 'BUS', 'Gateway', 'Test']]
             }
         },
         platform: {
             type: DataType.STRING,
             allowNull: false,
             validate: {
-                isIn: [['API', 'WEB', 'Mobile']]
+                isIn: [['API', 'WEB', 'Mobile', 'Test']]
             }
         }
     },

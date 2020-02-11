@@ -1,6 +1,6 @@
-const replies = require('../services/replies/index')
+const replies = require('../services/replies')
 const logger = require('../services/utils/logger')
-const validator = require('../services/validators/project')
+const validator = require('../services/validators')
 
 module.exports = app => {
     app

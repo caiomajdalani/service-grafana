@@ -19,9 +19,9 @@
  * @group PROJECTS - Resource for projects operations.
  * @param {createProject.model} createProject.body.required - Create Project payload.
  * @returns {responseProject.model} 201 - Project object with it properties.
- * @returns {Errors.model} 400 - Invalid properties.
+ * @returns {Error} 400 - Invalid properties.
  * @returns {Error} 401 - Unauthorized.
- * @returns {Errors.model} 409 - Business error.
+ * @returns {Error} 409 - Business error.
  * @returns {Error} 422 - UnprocessableEntity
  * @returns {Error} 500 - Internal server error.
  */

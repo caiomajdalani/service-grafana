@@ -22,7 +22,7 @@
                     "VERSION": "v1",
                     "PORT": 5000,
                     "REQUEST": {
-                        "LIMIT": "50mb",
+                        "LIMIT": "100mb",
                         "EXTENDED": true,
                         "LOG": "local"
                     }
