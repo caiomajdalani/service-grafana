@@ -22,7 +22,8 @@ const schema = {
                 })
             })
         })
-    }).unknown()
+    }).unknown(),
+    projectId: Joi.number().integer().min(1).required()
 }
 
 module.exports = schema;

@@ -1,7 +1,7 @@
 {
-  "name": "service-grafana",
+  "name": "service-reports",
   "version": "1.0.0",
-  "description": "Service to populate MySQL for Grafana Dashboards",
+  "description": "Service to populate MySQL with Reports for Grafana Dashboards",
   "main": "server.js",
   "scripts": {
     "start": "node index.js"

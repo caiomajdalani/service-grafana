@@ -7,7 +7,7 @@ module.exports = app => {
         swaggerDefinition: {
             info: {
                 description: 'Send your cucumber reports to Grafana Dashboards',
-                title: 'Cucumber Reports API',
+                title: 'Service Reports API',
                 version: '1.0.0',
             },
             host: `localhost:${app.get('port')}`,
@@ -15,7 +15,7 @@ module.exports = app => {
             produces: [
                 "application/json"
             ],
-            schemes: ['http', 'https'],
+            schemes: ['http'],
         },
         basedir: __dirname, 
         files: ['./*.js'] 
