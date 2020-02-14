@@ -2,9 +2,12 @@
   "name": "service-reports",
   "version": "1.0.0",
   "description": "Service to populate MySQL with Reports for Grafana Dashboards",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start:local": "pm2 start ecosystem-config/local.config.js && pm2 logs service-reports",
+    "start:dev": "pm2 start ecosystem-config/development.config.js && pm2 logs service-reports",
+    "stop": "pm2 delete service-reports",
+    "logs": "pm2 logs service-reports"
   },
   "author": "Caio Majdalani",
   "license": "ISC",

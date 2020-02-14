@@ -16,7 +16,7 @@ const _mapReport = (body) => {
 module.exports = app => {
 
     app
-        .route('/reports')
+        .route('/v1/reports')
         .post(async (request, response) => {
             try {
                 const { value: dataValidation, error: errorValidation } = validator.report.validate(request)
@@ -24,17 +24,17 @@ module.exports = app => {
                     return replies.badRequest(response)(errorValidation.message)
                 } else {
 
-                    const { data: dataFindProject, error: errorFindProject } = await app.services.repositories.findOne('project', {id: request.body.projectId})
+                    const { data: dataFindProject, error: errorFindProject } = await app.src.services.repositories.findOne('project', {id: request.body.projectId})
                     if (errorFindProject) {
                         return replies.conflict(response)(`ProjectId = ${request.body.projectId} not found.`)
                     } else {
                         const _report = await _mapReport(request.body)
 
-                        const { data: dataFindReport, error: errorFindReport } = await app.services.repositories.findOne('report', {project_id: _report.projectId, execution_date: _report.executionDate})
+                        const { data: dataFindReport, error: errorFindReport } = await app.src.services.repositories.findOne('report', {project_id: _report.projectId, execution_date: _report.executionDate})
                         if (dataFindReport){
                             return replies.conflict(response)(`Report already exists at ID: ${dataFindReport.id}`)
                         } else {
-                            const { data: dataCreateReport, error: errorCreateReport } = await app.services.repositories.create('report', _report)
+                            const { data: dataCreateReport, error: errorCreateReport } = await app.src.services.repositories.create('report', _report)
                             if(errorCreateReport){
                                 logger.error({message: "Error saving on Database", meta: new Error(errorCreateReport)})
                                 return replies.unprocessableEntity(response)('Error.')

@@ -8,23 +8,21 @@ let mysql = null;
 
 module.exports = app => {
   if (!mysql) {
-
-    const config = app.config.config;
-
+    
     const sequelize = new Sequelize(
-      config.database,
-      config.username,
-      config.password,
-      config.params
+      app.src.database.config.database,
+      app.src.database.config.username,
+      app.src.database.config.password,
+      app.src.database.config.params
     );
     
     sequelize
         .authenticate()
         .then(() => {
-            logger.info({message: "Database connected succesfully"})
+            logger.info({message: "[*] DATABASE CONNECTED SUCCESSFULLY"})
         })
         .catch(err => {
-            logger.error({message: "Internal error", meta: new Error(err)})
+            logger.error({message: "[!] UNABLE TO CONNECT TO THE DATABASE: ", meta: new Error(err)})
         });
 
     mysql = {

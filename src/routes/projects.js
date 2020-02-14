@@ -4,7 +4,7 @@ const validator = require('../services/validators')
 
 module.exports = app => {
     app
-        .route('/projects')
+        .route('/v1/projects')
         .post(async (request, response) => {
             try {
         
@@ -13,11 +13,11 @@ module.exports = app => {
                     return replies.badRequest(response)(errorValidation.message)
                 } else {
         
-                    const { data: dataFindProject, error: errorFindProject } = await app.services.repositories.findOne('project', request.body)
+                    const { data: dataFindProject, error: errorFindProject } = await app.src.services.repositories.findOne('project', request.body)
                     if (dataFindProject) {
                         return replies.conflict(response)(`This project already exists at ID = ${dataFindProject.id}`)
                     } else {
-                        const { data: dataCreateProject, error: errorCreateProject } = await app.services.repositories.create('project', request.body)
+                        const { data: dataCreateProject, error: errorCreateProject } = await app.src.services.repositories.create('project', request.body)
                         if(errorCreateProject){
                             logger.error({message: "Error saving on Database", meta: new Error(errorCreateProject)})
                             return replies.unprocessableEntity(response)('Error.')
@@ -35,7 +35,7 @@ module.exports = app => {
         })
         .get(async(request, response)=>{
             try {
-                const { data: dataFindProjects, error: errorFindProjects } = await app.services.repositories.find('project')
+                const { data: dataFindProjects, error: errorFindProjects } = await app.src.services.repositories.find('project')
                 if(errorFindProjects){
                     logger.error({message: "Error querying on Database", meta: new Error(errorFindProjects)})
                     return replies.unprocessableEntity(response)('Error.')
@@ -49,14 +49,14 @@ module.exports = app => {
         });
 
     app
-        .route('/projects/:projectId')
+        .route('/v1/projects/:projectId')
         .get(async(request, response)=>{
             try {
                 const { value: dataValidation, error: errorValidation } = validator.projectId.validate(request.params.projectId)
                 if (errorValidation) {
                     return replies.badRequest(response)(errorValidation.message)
                 } else {
-                    const { data: dataFindProject, error: errorFindProject } = await app.services.repositories.findOne('project', {id: request.params.projectId})
+                    const { data: dataFindProject, error: errorFindProject } = await app.src.services.repositories.findOne('project', {id: request.params.projectId})
                     if(errorFindProject){
                         return replies.notFound(response)(`ProjectId = ${request.params.projectId} not found.`)
                     } else {

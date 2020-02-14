@@ -10,7 +10,7 @@ module.exports = app => {
                 title: 'Service Reports API',
                 version: '1.0.0',
             },
-            host: `localhost:${app.get('port')}`,
+            host: `${app.get('host')}:${app.get('port')}`,
             basePath: '/',
             produces: [
                 "application/json"

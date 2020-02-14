@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+    api: 
+        build: .
+        image: service-reports-api:1.0
+        container_name: api
+        ports: 
+            - "8181:8181"
+        restart: always
+        links: 
+            - mysqldb
+        depends_on: 
+            - mysqldb
+    mysqldb:
+        image: mysql:latest
+        command: --default-authentication-plugin=mysql_native_password
+        container_name: "mysqldb"
+        environment:
+            MYSQL_ROOT_PASSWORD: admin
+            MYSQL_DATABASE: reports
+        ports:
+            - "3306:3306"
+    grafana:
+        image: grafana/grafana
+        container_name: "grafana"
+        ports:
+            - "3000:3000"
+        environment: 
+            - GF_INSTALL_PLUGINS=grafana-piechart-panel
+        depends_on:
+            - mysqldb

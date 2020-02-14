@@ -11,8 +11,10 @@ const _api = JSON.parse(API)
 
 module.exports = app => {
     app
+        .set("host", _api.HOST || 'localhost')
         .set("port", _api.PORT || 5000)
-        .set("env", ENVIRONMENT || 'local')
+        .set("env", ENVIRONMENT || 'LOCAL')
+        .set("version", _api.VERSION)
         .use(helmet())
         .use(cors({
             origins: ["*"],
@@ -45,6 +47,6 @@ module.exports = app => {
             expressFormat: true,
             colorize: true,
             ignoreRoute: function (req, res) { return false; }
-        }))
+        }));
 
 }

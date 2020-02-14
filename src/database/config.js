@@ -11,7 +11,7 @@ module.exports = {
     dialect: 'mysql',
     port: _mysql.PORT,
     logging: (sql) => {
-      logger.info(`[${new Date()}] ${sql}`);
+      logger.info(sql);
     },
     define: {
       underscored: true

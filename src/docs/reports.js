@@ -38,7 +38,7 @@
 
 /**
  * Create a Report
- * @route POST /reports
+ * @route POST /v1/reports
  * @group REPORTS - Resource for reports operations.
  * @param {createReport.model} createReport.body.required - Create Report payload.
  * @returns {responseReport.model} 201 - Report object with it properties.

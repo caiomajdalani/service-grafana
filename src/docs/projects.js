@@ -15,7 +15,7 @@
 
 /**
  * Create a Project
- * @route POST /projects
+ * @route POST /v1/projects
  * @group PROJECTS - Resource for projects operations.
  * @param {createProject.model} createProject.body.required - Create Project payload.
  * @returns {responseProject.model} 201 - Project object with it properties.
@@ -28,7 +28,7 @@
 
 /**
  * Find projects
- * @route GET /projects
+ * @route GET /v1/projects
  * @group PROJECTS - Resource for projects operations.
  * @returns {Array.<responseProject>} 200 - Array of Projects objects with it properties.
  * @returns {Error} 400 - Invalid properties.
@@ -40,7 +40,7 @@
 
  /**
  * Find a project
- * @route GET /projects/{projectId}
+ * @route GET /v1/projects/{projectId}
  * @group PROJECTS - Resource for projects operations.
  * @param {integer} projectId.path.required - Project ID
  * @returns {responseProject.model} 200 - Project object with it properties.
