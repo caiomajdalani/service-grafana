@@ -28,23 +28,24 @@ module.exports = app => {
                     if (errorFindProject) {
                         return replies.conflict(response)(`ProjectId = ${request.body.projectId} not found.`)
                     } else {
-                        const _report = await _mapReport(request.body)
-
-                        const { data: dataFindReport, error: errorFindReport } = await app.src.services.repositories.findOne('report', {project_id: _report.projectId, execution_date: _report.executionDate})
-                        if (dataFindReport){
-                            return replies.conflict(response)(`Report already exists at ID: ${dataFindReport.id}`)
+                        if(!dataFindProject.active) {
+                            return replies.conflict(response)(`ProjectId = ${request.body.projectId} is not active.`)
                         } else {
-                            const { data: dataCreateReport, error: errorCreateReport } = await app.src.services.repositories.create('report', _report)
-                            if(errorCreateReport){
-                                logger.error({message: "Error saving on Database", meta: new Error(errorCreateReport)})
-                                return replies.unprocessableEntity(response)('Error.')
+                            const _report = await _mapReport(request.body)
+                            const { data: dataFindReport, error: errorFindReport } = await app.src.services.repositories.findOne('report', {project_id: _report.projectId, execution_date: _report.executionDate})
+                            if (dataFindReport){
+                                return replies.conflict(response)(`Report already exists at ID: ${dataFindReport.id}`)
                             } else {
-                                return replies.created(response)(dataCreateReport)
+                                const { data: dataCreateReport, error: errorCreateReport } = await app.src.services.repositories.create('report', _report)
+                                if(errorCreateReport){
+                                    logger.error({message: "Error saving on Database", meta: new Error(errorCreateReport)})
+                                    return replies.unprocessableEntity(response)('Error.')
+                                } else {
+                                    return replies.created(response)(dataCreateReport)
+                                }
                             }
-                        }
-                        
+                        }                        
                     }
-
                 }
 
             } catch (error) {

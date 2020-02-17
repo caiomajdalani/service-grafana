@@ -20,9 +20,9 @@ datasources:
   # <string> url
   url: mysqldb:3306
   # <string> Deprecated, use secureJsonData.password
-  password: admin
+  password: grafana
   # <string> database user, if used
-  user: root
+  user: grafana
   # <string> database name, if used
   database: reports
   # <bool> enable/disable basic auth

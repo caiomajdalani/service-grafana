@@ -2,15 +2,16 @@
 
 /**
  * @typedef createProject
- * @property {string} name.required
- * @property {string} platform.required
+ * @property {string} name.required - Project Name (Accepted values: 'PedeFacil', 'Portal', 'Ecommerce', 'Allowance', 'SodexoMobile', 'PartnersBridge', 'BUS', 'Gateway', 'Test')
+ * @property {string} platform.required - Project Platform (Accepted values: 'API', 'WEB', 'Mobile', 'Test')
  */
 
  /**
  * @typedef responseProject
- * @property {integer} id.required 
- * @property {string} project.required
- * @property {string} platform.required 
+ * @property {integer} id.required - ProjectId
+ * @property {string} project.required - Project Name
+ * @property {string} platform.required - Project Platform
+ * @property {boolean} active.required - Is project active?
  */
 
 /**
@@ -38,12 +39,25 @@
  * @returns {Error} 500 - Internal server error.
  */
 
- /**
+/**
  * Find a project
  * @route GET /v1/projects/{projectId}
  * @group PROJECTS - Resource for projects operations.
  * @param {integer} projectId.path.required - Project ID
  * @returns {responseProject.model} 200 - Project object with it properties.
+ * @returns {Error} 400 - Invalid properties.
+ * @returns {Error} 401 - Unauthorized.
+ * @returns {Error} 409 - Business error.
+ * @returns {Error} 422 - UnprocessableEntity
+ * @returns {Error} 500 - Internal server error.
+ */
+
+/**
+ * Deactivate a project
+ * @route DELETE /v1/projects/{projectId}
+ * @group PROJECTS - Resource for projects operations.
+ * @param {integer} projectId.path.required - Project ID
+ * @returns {string} 202 - ProjectId = {projectId} deactivated.
  * @returns {Error} 400 - Invalid properties.
  * @returns {Error} 401 - Unauthorized.
  * @returns {Error} 409 - Business error.

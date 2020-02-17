@@ -14,6 +14,11 @@ module.exports = (sequelize, DataType) => {
             validate: {
                 isIn: [['API', 'WEB', 'Mobile', 'Test']]
             }
+        },
+        active: {
+            type: DataType.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
         }
     },
     {
