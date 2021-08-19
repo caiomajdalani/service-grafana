@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: service-grafana
+  description: Service Grafana is a API for generate dashboards
+  links:
+    - url: https://github.com/caiomajdalani/service-grafana
+      title: GitHub Repo
+      icon: github
+spec:
+  type: service
+  lifecycle: experimental
+  owner: squads
+  providesApis:
+    - service-grafana
