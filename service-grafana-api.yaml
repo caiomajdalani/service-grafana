@@ -14,8 +14,8 @@ metadata:
       icon: code
 spec:
   type: openapi
-  lifecycle: production
-  owner: background
+  lifecycle: experimental
+  owner: squads
   definition: |
     openapi: "3.0.0"
     info:
